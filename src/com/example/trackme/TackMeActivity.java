@@ -49,8 +49,6 @@ public class TackMeActivity extends FragmentActivity {
     private List<GpsSatellite> mSatellites;
     private SatellitesView mSatelliteView = null;
     private SignalsView mSignalsView = null;
-    private int mInViewSatNum = 0;
-    private int mInUseSatNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -324,7 +322,7 @@ public class TackMeActivity extends FragmentActivity {
 		if (!mGpsStarted) {
 			Log.i(TAG, "StartGps() normal");
 			try {
-				mLocationManager.requestLocationUpdates(mLocationManager.GPS_PROVIDER, 1000, 0, mLocationListener);
+				mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, mLocationListener);
 				mLocationManager.addGpsStatusListener(mGpsStatusListener);
 				mLocationManager.addNmeaListener(mGpsNmeaListener);
 			} catch (IllegalArgumentException e) {

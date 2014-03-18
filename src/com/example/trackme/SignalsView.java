@@ -21,11 +21,10 @@ public class SignalsView extends View {
 	private static int mScreenWidth = 480; //TODO: the screen size should be auto detect
 	private static int mScreenHeight = 800;
 	
-	private static int mHistogramWidth = 400;
 	private static int mHistogramHeight = 26;
 	private static int mTextSize = 20;
 	private static int mHistogramTop = mHistogramHeight *3;
-	private static int mHistogramBotom = mHistogramHeight*23;;
+
 	
 	
 	// The histogram layout of every satellite's signal
@@ -50,16 +49,11 @@ public class SignalsView extends View {
 	private void setDisplayParameters(int screenWidth, int screenHeight){
 		mScreenWidth = screenWidth;
 		mScreenHeight = screenHeight;
-		
-		mHistogramWidth = screenWidth - 80;
 		mTextSize = screenWidth/25;
 		mHistogramHeight = mTextSize; 
-		
 		mHistogramTop = mHistogramHeight *3;
-		mHistogramBotom = mHistogramHeight*23;
 		mSignalRange = (mScreenWidth - 20)/7;
 		mHistogramLeft = mSignalRange +10;
-		
 	}
 	
 	@Override
@@ -75,20 +69,14 @@ public class SignalsView extends View {
 		float snr;
 		int prn;
 		int gpscount = 0;
-		int inused = 0;
 		Paint paint = new Paint();
 
 		if (satellites != null) {
 			for (GpsSatellite satellite : satellites) {
 
 				snr = satellite.getSnr();
-
 				paint.setStyle(Paint.Style.FILL);
-				if (satellite.usedInFix()){
-					inused +=1;
-				}
 				paint.setColor(getColor((int) snr, satellite.usedInFix()));
-
 				prn = satellite.getPrn();
 				
 				gpscount = gpscount + 1;
@@ -128,9 +116,6 @@ public class SignalsView extends View {
 		canvas.drawRect(10+mSignalRange*4, mHistogramHeight+6, 10+mSignalRange*6, mHistogramHeight*2 +6, paint);
 		paint.setColor(getColor(42,true));
 		canvas.drawRect(10+mSignalRange*5, mHistogramHeight+6, 10+mSignalRange*7, mHistogramHeight*2 +6, paint);
-		
-
-		
 	}
 	private int getColor(int snr, Boolean inuse) {
 		int color = 0;

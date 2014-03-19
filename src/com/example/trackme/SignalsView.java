@@ -18,7 +18,7 @@ import android.location.GpsSatellite;
 public class SignalsView extends View {
 
 	private static final String TAG = "SignalView";
-	private static int mScreenWidth = 480; //TODO: the screen size should be auto detect
+	private static int mScreenWidth = 480; 
 	private static int mScreenHeight = 800;
 	
 	private static int mHistogramHeight = 26;

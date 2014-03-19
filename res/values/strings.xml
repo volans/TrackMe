@@ -9,5 +9,24 @@
     <string name="title_nmea">NMEA</string>
     <string name="nmea_filename">name_file.nmea</string>
     <string name="button_save">Save Nmea</string>
+    
+    <!-- location table text -->
+    <string name="location_ttff_txt">TTFF:</string>
+    <string name="location_acc_txt">ACC:</string>
+    <string name="location_lon_txt">Lon:</string>
+    <string name="location_lat_txt">Lat:</string>
+    <string name="location_alt_txt">Alt:</string>
+    <string name="location_speed_txt">Speed:</string>
+    <string name="location_time_txt">Time:</string>
+    <string name="location_date_txt">Date:</string>
+    <!-- location table val -->
+    <string name="location_ttff_val">---</string>
+    <string name="location_acc_val">---</string>
+    <string name="location_lon_val">---</string>
+    <string name="location_lat_val">---</string>
+    <string name="location_alt_val">---</string>
+    <string name="location_speed_val">---</string>
+    <string name="location_time_val">---</string>
+    <string name="location_date_val">---</string>
 
 </resources>

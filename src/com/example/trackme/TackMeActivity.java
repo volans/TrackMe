@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 
 import android.location.GpsSatellite;
@@ -43,6 +44,7 @@ public class TackMeActivity extends FragmentActivity {
     ViewPager mViewPager;
     
     private static final String TAG = "TrackMe";
+    private static final int PAGES = 3; // Show 3 total pages.
     private static LocationManager mLocationManager = null;
     private static boolean mGpsStarted = false;
     private EditText mTextNmea = null;
@@ -67,6 +69,8 @@ public class TackMeActivity extends FragmentActivity {
         //mSectionsPagerAdapter.instantiateItem(mViewPager, 1);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mSatellites = new ArrayList<GpsSatellite>();
+           
+        Log.i(TAG, "onCreate Done");
 	}
     
     @Override
@@ -90,12 +94,7 @@ public class TackMeActivity extends FragmentActivity {
 	@Override
 	public void onDestroy() {
 		Log.i(TAG, "onDestroy");
-		if (mGpsStarted) {
-			mLocationManager.removeGpsStatusListener(mGpsStatusListener);
-			mLocationManager.removeUpdates(mLocationListener);
-			mLocationManager.removeNmeaListener(mGpsNmeaListener);
-		}
-		mGpsStarted = false;
+		stopGps();
 		super.onDestroy();
 	}
     @Override
@@ -179,7 +178,9 @@ public class TackMeActivity extends FragmentActivity {
 				nmeaput = nmea;
 			}
 			mTextNmea = (EditText) DummySectionFragment.nmeaView.findViewById(R.id.edit_nmea);
-			mTextNmea.append(nmeaput);
+			if(mTextNmea != null){	
+				mTextNmea.append(nmeaput);
+			}
 		}
 	};   
 
@@ -203,8 +204,7 @@ public class TackMeActivity extends FragmentActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            return PAGES;
         }
 
         @Override
@@ -308,9 +308,16 @@ public class TackMeActivity extends FragmentActivity {
 		Log.i(TAG, "stopGps()");
 		
 		if (mGpsStarted) {
-			mLocationManager.removeGpsStatusListener(mGpsStatusListener);
 			mLocationManager.removeUpdates(mLocationListener);
+			
+			//we should wait for moment to make sure the status listener can get the location manager status
+			try {
+				TimeUnit.MILLISECONDS.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			mLocationManager.removeNmeaListener(mGpsNmeaListener);
+			mLocationManager.removeGpsStatusListener(mGpsStatusListener);
 		}
 		mGpsStarted = false;
 	}

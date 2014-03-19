@@ -94,9 +94,9 @@ public class SatellitesView extends View {
 				paint.setColor(getColor((int) snr, satellite.usedInFix()));
 				
 				prn = satellite.getPrn();
-				if (prn < 33) {
+				if (prn < 33 || prn >97) { // Treat GPS, QZSS and SBAS as same system
 					canvas.drawCircle((float) x, (float) y, mSR, paint);
-				}else if (prn > 64 && prn < 97) {
+				}else if (prn > 64 && prn < 97) { // Glonass
 					Path path = new Path();  
 			        path.moveTo((float) x, (float) y-mSR);
 			        path.lineTo((float) x+(float) (mSR*0.866), (float) y+mSR/2);  

@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <EditText
+        android:id="@+id/edit_nmea"
+        android:labelFor="@id/edit_nmea"
+        android:layout_width="fill_parent"
+        android:enabled="false"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_nmea_filename"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:layout_marginBottom="5.0dip"
+        android:ems="10"
+        android:textSize="16sp"
+        android:gravity="top"
+        android:inputType="none"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:text="" >
+
+    </EditText>
+    
+    <EditText
+        android:id="@+id/edit_nmea_filename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_save"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:hint="@string/nmea_filename"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+    
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/button_save" />
+
+
+
+</RelativeLayout>
